@@ -1,16 +1,16 @@
 # General
 
 seed: 42
-device: cuda
+device: cpu
 
 # Task related 
 task_mode: ngym      # "ngym" or "sMNIST"
-task: 2AF            # "2AF", "DMS", "CXT" (if ngym)
+task: CXT            # "2AF", "DMS", "CXT" (if ngym)
 t_mult: 1            # timing multiplier (ngym)
 
 # Model related
 model: rnn
-hidden_dim: 128
+hidden_dim: 300
 
 ## (CTRNN dynamics, can keep like this since these are always these values in the paper code)
 tau: 100.0
@@ -26,16 +26,17 @@ experiment: rank_sweep   # "rank_sweep" or "spectral_sweep" for currently for ra
 
 # Sweep parameters, i.e. list of parameters to try. LR sweep is always being done here
 lr_list: [0.003]
-rank_list: [1, 3, 10, 30, 100, 128]
+rank_list: [1, 3, 10, 30, 100, 300]
 radius_list: [0.5, 1.0, 1.5, 2.0]
 
 # Connectivity parameters, generally don't matter for the experiments since they're set 
 # again in the code, so can be anything here at the moment. 
 connectivity:
-  type: low_rank
+  type: svd_truncated
   rank: 10
   spectral_radius: 1.0
+  base_std: 1.25
 
 sample_size: 10
 
-additional_details: 10000 iter, 10 sample_size, .003 lr
+additional_details: "Testing out config files with new code structure"

@@ -31,7 +31,7 @@ def train(model, dataloader, config):
     
     Wt = get_recurrent_weights(model)
     logs.append({
-        "weight_dist": (torch.norm(Wt - W0) / torch.norm(W0)).item(),
+        "weight_dist": weight_distance(W0, Wt).item(),
         "loss": loss.item()
     })
 
